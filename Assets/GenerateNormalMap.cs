@@ -33,7 +33,7 @@ public class GenerateNormalMap : MonoBehaviour {
 			Generate ();
 	}
 
-	void Generate()
+	public void Generate()
 	{
 
 		Debug.Log("Creating texture....");
