@@ -58,9 +58,9 @@ public class GenerateNormalMap : MonoBehaviour {
 //				float vecZ = centerColor.r;
 
 				Vector3 normalVec = new Vector3();
-				normalVec.x = rightColor.r - leftColor.r;
-				normalVec.y = topColor.r - bottomColor.r;
-				normalVec.z = centerColor.r;
+                normalVec.x = GetLuminance(rightColor) - GetLuminance(leftColor);
+                normalVec.y = GetLuminance(topColor) - GetLuminance(bottomColor);
+                normalVec.z = GetLuminance(centerColor);
 				normalVec.Normalize();
 
 				normalVec.x = (1f + normalVec.x) / 2f;
@@ -77,4 +77,11 @@ public class GenerateNormalMap : MonoBehaviour {
 		File.WriteAllBytes(Application.dataPath + "/" +outPutName_, bytes);
 		Debug.Log("....done.");
 	}
+
+    float GetLuminance(Color rgb)
+    {
+
+        return rgb.r * 0.2126f + rgb.g * 0.7152f + rgb.b * 0.0722f;
+
+    }
 }
